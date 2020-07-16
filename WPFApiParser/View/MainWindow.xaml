@@ -1,0 +1,29 @@
+﻿<Window x:Class="WPFApiParser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPFApiParser"
+        xmlns:vm="clr-namespace:WPFApiParser.ViewModel" 
+        Title="MainWindow" Height="500" Width="900">
+    <Window.Resources>
+        <vm:ViewModel x:Key="viewModel"></vm:ViewModel>
+    </Window.Resources>
+
+    <Grid DataContext="{Binding Source={StaticResource viewModel}}">       
+        <ListView ItemsSource="{Binding ListSelectedUserData}" Margin="10,55,24,38">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="30" ></GridViewColumn>
+                    <GridViewColumn Header="UserId" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" ></GridViewColumn>
+                    <GridViewColumn Header="Body" DisplayMemberBinding="{Binding Body}" ></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="comboBox1" 
+                  VerticalAlignment="Top" Width="156" ItemsSource="{Binding ListUserData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  DisplayMemberPath="Id"
+                  SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
+                  SelectedIndex="0" />           
+        
+    </Grid>
+</Window>
