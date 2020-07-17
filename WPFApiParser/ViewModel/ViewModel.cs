@@ -18,37 +18,37 @@ namespace WPFApiParser.ViewModel
     {
         public ViewModel()
         {
-            ListUserData = new ObservableCollection<UserData>();
-            ListSelectedUserData = new ObservableCollection<Model.UserData>();
-            UserData = new UserData();
+            ListUserData = new ObservableCollection<UserPost>();
+            ListSelectedUserData = new ObservableCollection<Model.UserPost>();
+            UserData = new UserPost();
 
             LoadAPI();
         }
 
-        private ObservableCollection<UserData> listuserdata;
-        public ObservableCollection<UserData> ListUserData
+        private ObservableCollection<UserPost> listuserdata;
+        public ObservableCollection<UserPost> ListUserData
         {
             get { return listuserdata; }
             set { listuserdata = value; }
         }
 
-        private ObservableCollection<UserData> listselecteduserdata;
+        private ObservableCollection<UserPost> listselecteduserdata;
 
-        public ObservableCollection<UserData> ListSelectedUserData
+        public ObservableCollection<UserPost> ListSelectedUserData
         {
             get { return listselecteduserdata; }
             set { listselecteduserdata = value; }
         }        
 
-        private UserData userdata;
-        public UserData UserData
+        private UserPost userdata;
+        public UserPost UserData
         {
             get { return userdata; }
             set { userdata = value; }
         }
 
-        private UserData selecteditem;
-        public UserData SelectedItem
+        private UserPost selecteditem;
+        public UserPost SelectedItem
         {
             get 
             { 
@@ -64,7 +64,7 @@ namespace WPFApiParser.ViewModel
 
         private void GetSelectedUserData()
         {
-            ListSelectedUserData.Add(new UserData() { Id = SelectedItem.Id, UserId = SelectedItem.UserId, Title = SelectedItem.Title, Body = SelectedItem.Body });
+            ListSelectedUserData.Add(new UserPost() { Id = SelectedItem.Id, UserId = SelectedItem.UserId, Title = SelectedItem.Title, Body = SelectedItem.Body });
         }        
 
         public void LoadAPI()
@@ -90,7 +90,7 @@ namespace WPFApiParser.ViewModel
                     {
                         JObject jobj = JObject.Parse(jsonData[1].ToString());
 
-                        ListUserData.Add(new UserData
+                        ListUserData.Add(new UserPost
                         {
                             UserId = Convert.ToInt32(jsonData[i].SelectToken("userId").ToString()),
                             Id = Convert.ToInt32(jsonData[i].SelectToken("id").ToString()),

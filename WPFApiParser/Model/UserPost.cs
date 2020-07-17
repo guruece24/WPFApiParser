@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WPFApiParser.Model
 {
-    public class UserData
+    public class UserPost
     {
         private int userid;
         public int UserId
