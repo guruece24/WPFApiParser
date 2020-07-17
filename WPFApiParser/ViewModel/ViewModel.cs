@@ -15,29 +15,46 @@ using System.ComponentModel;
 namespace WPFApiParser.ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
-    {
+    {        
         public ViewModel()
         {
-            ListUserData = new ObservableCollection<UserPost>();
-            ListSelectedUserData = new ObservableCollection<Model.UserPost>();
+            UserPosts = new ObservableCollection<UserPost>();
+            Users     = new ObservableCollection<User>();
+
+            SelectedUserPosts = new ObservableCollection<Model.UserPost>();
             UserData = new UserPost();
+            User     = new User();
 
-            LoadAPI();
+            LoadApiData();          
         }
 
-        private ObservableCollection<UserPost> listuserdata;
-        public ObservableCollection<UserPost> ListUserData
+        private void LoadApiData()
         {
-            get { return listuserdata; }
-            set { listuserdata = value; }
+            ApiClient apiClient = new ApiClient();
+            UserPosts = apiClient.LoadUserPosts();
+            Users    = apiClient.LoadUsers();
         }
 
-        private ObservableCollection<UserPost> listselecteduserdata;
-
-        public ObservableCollection<UserPost> ListSelectedUserData
+        private ObservableCollection<UserPost> userposts;
+        public ObservableCollection<UserPost> UserPosts
         {
-            get { return listselecteduserdata; }
-            set { listselecteduserdata = value; }
+            get { return userposts; }
+            set { userposts = value; }
+        }
+
+        private ObservableCollection<User> users;
+        public ObservableCollection<User> Users
+        {
+            get { return users; }
+            set { users = value; }
+        }
+
+        private ObservableCollection<UserPost> selecteduserposts;
+
+        public ObservableCollection<UserPost> SelectedUserPosts
+        {
+            get { return selecteduserposts; }
+            set { selecteduserposts = value; }
         }        
 
         private UserPost userdata;
@@ -47,8 +64,16 @@ namespace WPFApiParser.ViewModel
             set { userdata = value; }
         }
 
-        private UserPost selecteditem;
-        public UserPost SelectedItem
+        private User user;
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
+        
+
+        private User selecteditem;
+        public User SelectedItem
         {
             get 
             { 
@@ -62,45 +87,11 @@ namespace WPFApiParser.ViewModel
             }
         }      
 
-        private void GetSelectedUserData()
+        public void GetSelectedUserData()
         {
-            ListSelectedUserData.Add(new UserPost() { Id = SelectedItem.Id, UserId = SelectedItem.UserId, Title = SelectedItem.Title, Body = SelectedItem.Body });
-        }        
-
-        public void LoadAPI()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/posts");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync("");
-                response.Wait();
-
-                var result = response.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsStringAsync();
-                    readTask.Wait();
-
-                    JArray jsonData = JArray.Parse(readTask.Result.ToString());
-
-                    for (int i = 0; i < jsonData.Count; i++)
-                    {
-                        JObject jobj = JObject.Parse(jsonData[1].ToString());
-
-                        ListUserData.Add(new UserPost
-                        {
-                            UserId = Convert.ToInt32(jsonData[i].SelectToken("userId").ToString()),
-                            Id = Convert.ToInt32(jsonData[i].SelectToken("id").ToString()),
-                            Title = Convert.ToString(jsonData[i].SelectToken("title").ToString()),
-                            Body = Convert.ToString(jsonData[i].SelectToken("body").ToString())
-                        });
-                    }                   
-                }
-            }
-        }
+            UserPost userPost = UserPosts.AsEnumerable().Where(x => x.Id == SelectedItem.Id).FirstOrDefault();
+            SelectedUserPosts.Add(new UserPost() { Id = userPost.Id, UserId = userPost.UserId, Title = userPost.Title, Body = userPost.Body });
+        }               
 
         protected void NotifyUI(string param)
         {

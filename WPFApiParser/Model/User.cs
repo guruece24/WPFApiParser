@@ -106,5 +106,55 @@ namespace WPFApiParser.Model
             get { return geo_lang; }
             set { geo_lang = value; }
         }
+
+        /// <summary>
+        /// Phone
+        /// </summary>
+        private string phone;
+        public string Phone
+        {
+            get { return phone; }
+            set { phone = value; }
+        }
+
+        /// <summary>
+        /// Website
+        /// </summary>
+        private string website;
+        public string Website
+        {
+            get { return website; }
+            set { website = value; }
+        }
+
+        /// <summary>
+        /// CompanyName
+        /// </summary>
+        private string companyname;
+        public string CompanyName
+        {
+            get { return companyname; }
+            set { companyname = value; }
+        }
+
+        /// <summary>
+        /// CompanyPhrase
+        /// </summary>
+        private string companyphrase;
+        public string CompanyPhrase
+        {
+            get { return companyphrase; }
+            set { companyphrase = value; }
+        }
+
+        /// <summary>
+        /// Company BS
+        /// </summary>
+        private string companybs;
+        public string CompanyBs
+        {
+            get { return companybs; }
+            set { companybs = value; }
+        }
     }
 }

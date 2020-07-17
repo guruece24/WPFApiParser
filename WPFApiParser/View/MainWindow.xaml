@@ -8,22 +8,50 @@
         <vm:ViewModel x:Key="viewModel"></vm:ViewModel>
     </Window.Resources>
 
-    <Grid DataContext="{Binding Source={StaticResource viewModel}}">       
-        <ListView ItemsSource="{Binding ListSelectedUserData}" Margin="10,55,24,38">
+    <Grid DataContext="{Binding Source={StaticResource viewModel}}">  
+        
+        <ListView ItemsSource="{Binding SelectedUserPosts}" Margin="12,231,44,12">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="30" ></GridViewColumn>
+                    <!--<GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="30" ></GridViewColumn>-->
                     <GridViewColumn Header="UserId" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
                     <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" ></GridViewColumn>
                     <GridViewColumn Header="Body" DisplayMemberBinding="{Binding Body}" ></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="comboBox1" 
-                  VerticalAlignment="Top" Width="156" ItemsSource="{Binding ListUserData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  DisplayMemberPath="Id"
-                  SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
-                  SelectedIndex="0" />           
         
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="82,10,0,0" Name="comboBox1" 
+                  VerticalAlignment="Top" Width="156" ItemsSource="{Binding Users, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  DisplayMemberPath="Name"
+                  SelectedValue="{Binding SelectedItem, Mode=TwoWay}"
+                  SelectedIndex="0" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="22,12,0,0" Name="textBlock2" Text="Name" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,64,0,0" Name="textBlock4" Text="Username" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,95,0,0" Name="textBlock5" Text="Email" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,128,0,0" Name="textBlock6" Text="Street" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,159,0,0" Name="textBlock7" Text="Suite" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="233,65,0,0" Name="textBlock8" Text="City" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="76,65,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.UserName, Mode=TwoWay}" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="76,95,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Email, Mode=TwoWay}" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="76,127,0,0" Name="textBox4" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Street, Mode=TwoWay}" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="76,158,0,0" Name="textBox5" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Suite, Mode=TwoWay}" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="288,64,0,0" Name="textBox6" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.City, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="233,93,0,0" Name="textBlock3" Text="Zipcode" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="288,95,0,0" Name="textBox7" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.ZipCode, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="233,124,0,0" Name="textBlock9" Text="lat" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="288,125,0,0" Name="textBox8" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Geo_Lat, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="233,156,0,0" Name="textBlock10" Text="long" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="288,156,0,0" Name="textBox9" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Geo_Lang, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="467,65,0,0" Name="textBlock11" Text="Phone" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="526,63,0,0" Name="textBox10" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Phone, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="467,93,0,0" Name="textBlock12" Text="Website" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="526,92,0,0" Name="textBox11" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.Website, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="467,121,0,0" Name="textBlock13" Text="Company" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="526,122,0,0" Name="textBox12" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.CompanyName, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="467,153,0,0" Name="textBlock14" Text="Phrase" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="526,153,0,0" Name="textBox13" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.CompanyPhrase, Mode=TwoWay}"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="684,66,0,0" Name="textBlock15" Text="Bs" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="714,64,0,0" Name="textBox14" VerticalAlignment="Top" Width="120" Text="{Binding SelectedItem.CompanyBs, Mode=TwoWay}"/>
     </Grid>
 </Window>
