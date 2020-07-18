@@ -41,8 +41,6 @@ namespace WPFApiParser.Model
 
                     for (int i = 0; i < jsonData.Count; i++)
                     {
-                        JObject jobj = JObject.Parse(jsonData[1].ToString());                        
-
                         userPosts.Add(new UserPost
                         {
                             UserId  = Convert.ToInt32(jsonData[i].SelectToken("userId").ToString().RemoveQuotes()),
@@ -80,8 +78,6 @@ namespace WPFApiParser.Model
 
                     for (int i = 0; i < jsonData.Count; i++)
                     {
-                        JObject jobj = JObject.Parse(jsonData[1].ToString());                      
-
                         users.Add(new User
                         {
                             Name         = Convert.ToString(jsonData[i].SelectToken("name").ToString().RemoveQuotes()),
