@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace WPFApiParser.Model
 {
@@ -47,9 +48,12 @@ namespace WPFApiParser.Model
             set { email = value; }
         }
 
+
         /// <summary>
         /// Address Street Details
         /// </summary>
+        /// 
+        [JsonProperty("street")]
         private string street;
         public string Street
         {

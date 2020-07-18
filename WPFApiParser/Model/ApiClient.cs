@@ -12,6 +12,7 @@ using WPFApiParser.Command;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace WPFApiParser.Model
 {
@@ -44,10 +45,10 @@ namespace WPFApiParser.Model
 
                         userPosts.Add(new UserPost
                         {
-                            UserId  = Convert.ToInt32(jsonData[i].SelectToken("userId").ToString()),
-                            Id      = Convert.ToInt32(jsonData[i].SelectToken("id").ToString()),
-                            Title   = Convert.ToString(jsonData[i].SelectToken("title").ToString()),
-                            Body    = Convert.ToString(jsonData[i].SelectToken("body").ToString())
+                            UserId  = Convert.ToInt32(jsonData[i].SelectToken("userId").ToString().RemoveQuotes()),
+                            Id      = Convert.ToInt32(jsonData[i].SelectToken("id").ToString().RemoveQuotes()),
+                            Title   = Convert.ToString(jsonData[i].SelectToken("title").ToString().RemoveQuotes()),
+                            Body    = Convert.ToString(jsonData[i].SelectToken("body").ToString().RemoveQuotes())
                         });
                     }
                 }
@@ -79,25 +80,25 @@ namespace WPFApiParser.Model
 
                     for (int i = 0; i < jsonData.Count; i++)
                     {
-                        JObject jobj = JObject.Parse(jsonData[1].ToString());
+                        JObject jobj = JObject.Parse(jsonData[1].ToString());                      
 
                         users.Add(new User
                         {
-                            Name         = Convert.ToString(jsonData[i].SelectToken("name").ToString()),
-                            Id           = Convert.ToInt32(jsonData[i].SelectToken("id").ToString()),
-                            UserName     = Convert.ToString(jsonData[i].SelectToken("username").ToString()),
-                            Email        = Convert.ToString(jsonData[i].SelectToken("email").ToString()),
-                            Street       = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("street").ToString()),
-                            Suite        = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("suite").ToString()),
-                            City         = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("city").ToString()),
-                            ZipCode      = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("zipcode").ToString()),
-                            Geo_Lat      = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("geo").SelectToken("lat").ToString()),
-                            Geo_Lang     = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("geo").SelectToken("lng").ToString()),
-                            Phone        = Convert.ToString(jsonData[i].SelectToken("phone").ToString()),
-                            Website      = Convert.ToString(jsonData[i].SelectToken("website").ToString()),
-                            CompanyName  = Convert.ToString(jsonData[i].SelectToken("company").SelectToken("name").ToString()),
-                            CompanyPhrase = Convert.ToString(jsonData[i].SelectToken("company").SelectToken("catchPhrase").ToString()),
-                            CompanyBs    = Convert.ToString(jsonData[i].SelectToken("company").SelectToken("bs").ToString())
+                            Name         = Convert.ToString(jsonData[i].SelectToken("name").ToString().RemoveQuotes()),
+                            Id           = Convert.ToInt32(jsonData[i].SelectToken("id").ToString().RemoveQuotes()),
+                            UserName     = Convert.ToString(jsonData[i].SelectToken("username").ToString().RemoveQuotes()),
+                            Email        = Convert.ToString(jsonData[i].SelectToken("email").ToString().RemoveQuotes()),
+                            Street       = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("street").ToString().RemoveQuotes()),
+                            Suite        = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("suite").ToString().RemoveQuotes()),
+                            City         = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("city").ToString().RemoveQuotes()),
+                            ZipCode      = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("zipcode").ToString().RemoveQuotes()),
+                            Geo_Lat      = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("geo").SelectToken("lat").ToString().RemoveQuotes()),
+                            Geo_Lang     = Convert.ToString(jsonData[i].SelectToken("address").SelectToken("geo").SelectToken("lng").ToString().RemoveQuotes()),
+                            Phone        = Convert.ToString(jsonData[i].SelectToken("phone").ToString().RemoveQuotes()),
+                            Website      = Convert.ToString(jsonData[i].SelectToken("website").ToString().RemoveQuotes()),
+                            CompanyName  = Convert.ToString(jsonData[i].SelectToken("company").SelectToken("name").ToString().RemoveQuotes()),
+                            CompanyPhrase = Convert.ToString(jsonData[i].SelectToken("company").SelectToken("catchPhrase").ToString().RemoveQuotes()),
+                            CompanyBs    = Convert.ToString(jsonData[i].SelectToken("company").SelectToken("bs").ToString().RemoveQuotes())
                         });
                     }
                 }

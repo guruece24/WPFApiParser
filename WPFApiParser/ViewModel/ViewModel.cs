@@ -71,7 +71,6 @@ namespace WPFApiParser.ViewModel
             set { user = value; }
         }
         
-
         private User selecteditem;
         public User SelectedItem
         {
